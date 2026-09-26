@@ -5,13 +5,14 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +23,20 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'bio',
+        'profile_photo'
     ];
+
+    public function discussions():HasMany{
+        return $this->hasMany(Discussion::class);
+    }
+    public function replies():HasMany{
+        return $this->hasMany(Reply::class);
+    }
+    public function announcements():HasMany{
+        return $this->hasMany(Announcement::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
