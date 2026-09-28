@@ -11,7 +11,7 @@
 <body class="bg-neutral-900 font-sans antialiased ">
 
 
-<nav class="bg-neutral-900 border-b border-neutral-150 mb-8">
+<nav class="bg-neutral-900 border-b border-neutral-150 mb-8 ">
     <div class="ml-4  mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between   ">
         <a href="{{ route('discussions.index') }}" class="font-grobold font-bold text-xl text-white hover:text-gray-300">
             Community Class
