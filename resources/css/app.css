@@ -1,11 +1,60 @@
 @import 'tailwindcss';
 
+@font-face {
+    font-family: 'Grobold';
+    src: url('../fonts/GROBOLD.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-grobold: 'Grobold';
+
+    --color-neutral-950: #1a1a1a;
+    --color-neutral-900: #1f1f1f;
+    --color-neutral-850: #0d1114;
+    --color-neutral-800: #2a2a2a;
+    --color-neutral-700: #606040;
+    --color-neutral-600: #666666;
+    --color-neutral-400: #999999;
+    --color-neutral-200: #e0e0e0;
+    --color-neutral-150: #373b3e;
+    --color-neutral-100: #f0f0f0;
+    --color-neutral-50: #f8f8f8;
+    --color-neutral-0: #ffffff;
+
+    --color-primary-950: #001a4d;
+    --color-primary-900: #003366;
+    --color-primary-800: #004399;
+    --color-primary-600: #0066cc;
+    --color-primary-100: #e6f0ff;
+    --color-primary-50: #f0f5ff;
+
+
 }
+.icon { width: 1rem; height: 1rem; stroke-width: 1.75; flex-shrink: 0; }
+
+.badge {
+    display: inline-flex; align-items: center; gap: .35rem;
+    padding: .125rem .625rem; border-radius: 9999px;
+    color: var(--c);
+    border: 1px solid color-mix(in srgb, var(--c) 40%, transparent);
+    background: color-mix(in srgb, var(--c) 12%, transparent);
+}
+
+.side-link {
+    display: flex; align-items: center; gap: .6rem;
+    padding: .45rem .6rem; border-radius: .5rem;
+    font-size: .875rem; color: #fff; transition: background .15s;
+}
+.side-link .icon { color: var(--c); }
+.side-link:hover { background: rgb(255 255 255 / .06); }
+.side-link.active { background: color-mix(in srgb, var(--c) 15%, transparent); }

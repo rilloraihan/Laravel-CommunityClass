@@ -5,7 +5,32 @@
 
         <div class="w-full md:w-3/4">
             <div class="bg-neutral-900 rounded-lg shadow-sm border border-neutral-150 p-6 flex flex-col gap-4">
+                @if(isset($latestAnnouncement) && $latestAnnouncement)
+                    <div class="mb-5 bg-emerald-950/20 border border-emerald-900/50 rounded-lg p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
 
+                        <div class="flex items-center gap-3 overflow-hidden">
+                            <!-- Label Kecil -->
+                            <span class="flex-shrink-0 bg-emerald-900/50 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-800/50 uppercase tracking-wider">
+                Pengumuman
+            </span>
+
+                            <!-- Judul & Sedikit Cuplikan Isi -->
+                            <div class="flex items-center text-sm text-gray-300 min-w-0 flex-1">
+                                <strong class="text-white mr-2 flex-shrink-0">{{ $latestAnnouncement->title }}</strong>
+                                <span class="hidden sm:block border-l border-gray-600 pl-2 truncate">
+                    {{ $latestAnnouncement->content }}
+                </span>
+                            </div>
+                        </div>
+
+                        <!-- Tautan Aksi -->
+                        <a href="{{ route('announcements.index') }}" class="flex-shrink-0 text-xs text-emerald-400 hover:text-emerald-300 font-medium whitespace-nowrap flex items-center gap-1 transition">
+                            Lihat semua
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </a>
+
+                    </div>
+                @endif
                 <div class="flex justify-between items-center border-b-neutral-150 rounded-lg pb-4">
                     <h3 class="text-lg  font-grobold font-bold text-white">Topik</h3>
                     <a href="{{ route('discussions.create') }}" class="bg-neutral-900 hover:bg-neutral-950 border-2 border-neutral-150 text-white  font-bold font-sans py-2 px-4 rounded-lg text-sm transition shadow-sm ">
@@ -15,11 +40,10 @@
 
 
                 @forelse ($discussions as $discussion)
-                    <div class="border border-neutral-150 rounded-lg p-4 hover:bg-neutral-800 hover:border-back-200 transition">
-                        <a href="{{ route('discussions.show', $discussion->id) }}" class="text-l  font-sans font-normal text-white hover:text-gray-300  mb-1">
+                    <a href="{{ route('discussions.show', $discussion->id) }}" class="block border border-neutral-150 rounded-lg p-4 hover:bg-neutral-800 hover:border-neutral-500 transition cursor-pointer">
+                        <h3 class="text-lg font-sans font-normal text-white mb-1">
                             {{ $discussion->title }}
-                        </a>
-
+                        </h3>
                         <div class="flex flex-wrap items-center text-xs text-gray-500 gap-3">
                         <span class="font-medium text-gray-700 flex items-center gap-2">
 
@@ -39,13 +63,13 @@
                             <span class="bg-back-200 font-sans text-gray-400 px-2.5 py-0.5 rounded-full border border-neutral-150">{{ $discussion->category->name }}</span>
                             <span>{{ $discussion->created_at->locale('id')->diffForHumans() }}</span>
                             <span class="flex items-center gap-1">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                            {{ $discussion->replies->count() }} balasan
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                            {{ $discussion->replies_count ?? $discussion->replies()->count() }} Balasan
                         </span>
                         </div>
-                    </div>
+                    </a>
                 @empty
-                    <div class="text-center py-12 text-gray-500 bg-gray-50 rounded-lg border border-dashed border-gray-300">
+                    <div class="text-center py-12 text-gray-500 bg-neutral-900 rounded-lg border  border-neutral-150">
                         <p>Belum ada topik diskusi di kategori ini.</p>
                     </div>
                 @endforelse
