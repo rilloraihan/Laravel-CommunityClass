@@ -23,4 +23,4 @@ CommunityClass is a web-based forum application designed to serve as a centraliz
 - MariaDB / MySQL (Database)
 
 ## Visit
-<communityclass.infinityfree.me>
+<http://communityclass.infinityfree.me>
