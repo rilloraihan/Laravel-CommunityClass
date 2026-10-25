@@ -22,5 +22,4 @@ CommunityClass is a web-based forum application designed to serve as a centraliz
 - Vite (Frontend Asset Build Tool)
 - MariaDB / MySQL (Database)
 
-## Visit
-<http://communityclass.infinityfree.me>
+
